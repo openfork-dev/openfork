@@ -53,6 +53,8 @@ const ProjectInfo = ({
   const [error, setError] = useState(false);
   const [repoData, setRepoData] = useState<any>({});
   const [username, setUsername] = useState("");
+  const [comments, setComments] = useState(0);
+
   const githubContent = (githubUrl: string, filename: string) => {
     const split = githubUrl.split("/"); // https://github.com/user/repo
     const username = split[3];
@@ -69,7 +71,6 @@ const ProjectInfo = ({
         const response = await fetch(url);
         if (response.ok) {
           const configFile = JSON.parse(`${await response.text()}`);
-          console.log(configFile);
           setConfig(configFile);
           return;
         }
@@ -128,9 +129,18 @@ const ProjectInfo = ({
     setCurrentUser((await supabase.auth.getUser()).data.user?.id);
   };
 
+  const getCommentLength = async () => {
+    let { data: project_comments }: { data: any } = await supabase
+      .from("project_comments")
+      .select("id")
+      .eq("project_id", id);
+    setComments(project_comments?.length);
+  };
+
   useEffect(() => {
     getUpvotes();
     getCurrentUser();
+    getCommentLength();
   }, [currentUser, supabase]);
 
   function checkUpvoted() {
@@ -216,7 +226,7 @@ const ProjectInfo = ({
 
         <Flex gap={4} py="10px">
           <Text>{upvotes.length || "0 "} Upvotes</Text>
-          <Text>10 Comments</Text>
+          <Text>{comments} Comments</Text>
         </Flex>
 
         <Flex gap={5}>
