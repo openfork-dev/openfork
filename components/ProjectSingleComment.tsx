@@ -44,7 +44,9 @@ const ProjectSingleComment = ({ comment }: any) => {
   const getUpvotes = async () => {
     let { data: comment_upvotes }: { data: any } = await supabase
       .from("comment_upvotes")
-      .select("*");
+      .select("*")
+      .eq("comment_id", comment.id);
+
     console.log(comment_upvotes);
     setUpvotes(comment_upvotes);
   };

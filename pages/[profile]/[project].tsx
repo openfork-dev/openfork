@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { profile } from "console";
 import Head from "next/head";
 import Header from "../../components/Header";
-import ContainerLayout from "../../Layout/ContainerLayout";
+import ContainerLayout from "../../layouts/ContainerLayout";
 import { Box, Flex, Text, Link, Button, Tag } from "@chakra-ui/react";
 // import Link from "next/link";
 import { SiGithub } from "react-icons/si";
