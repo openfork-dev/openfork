@@ -4,7 +4,7 @@ import { GoVerified } from "react-icons/go";
 import { TbArrowBigUpLines } from "react-icons/tb";
 import { supabase } from "../utils/supabaseClient";
 import ProjectCommentInput from "./ProjectCommentInput";
-import Link from "next/link"
+import Link from "next/link";
 
 interface UserProps {
   avatar_url: string;
@@ -100,20 +100,24 @@ const ProjectSingleComment = ({ comment }: any) => {
           mr={2}
           name={user.display_name}
         />
-      <Box>
-      <Text fontWeight={"bold"} mr={1}>
-          {user.display_name}
-        </Text>
-       <Flex>
-          <Link href={"/"+user.username}><>@{user.username}</></Link> 
-          {user.is_verified && <Icon fontSize="sm" as={GoVerified} ml={1} />} 
-       </Flex>
-      </Box>
+        <Box>
+          <Text fontWeight={"bold"} mr={1}>
+            {user.display_name}
+          </Text>
+          <Flex>
+            <Link href={"/" + user.username}>
+              <>@{user.username}</>
+            </Link>
+            {user.is_verified && <Icon fontSize="sm" as={GoVerified} ml={1} />}
+          </Flex>
+        </Box>
       </Flex>
-      <Text p={4} my={2} bg="gray.900" borderRadius="md">{comment.comment_text}</Text>
+      <Text p={4} my={2} bg="gray.900" borderRadius="md">
+        {comment.comment_text}
+      </Text>
       <Flex gap={7} my={3} align="center" fontSize={"xs"}>
         <Flex
-        gap={2}
+          gap={2}
           cursor={"pointer"}
           fontSize="md"
           align="center"
