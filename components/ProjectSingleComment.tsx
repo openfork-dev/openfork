@@ -48,8 +48,6 @@ const ProjectSingleComment = ({ comment }: any) => {
       .from("comment_upvotes")
       .select("*")
       .eq("comment_id", comment.id);
-
-    console.log(comment_upvotes);
     setUpvotes(comment_upvotes);
   };
 
