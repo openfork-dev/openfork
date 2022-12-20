@@ -104,8 +104,8 @@ const ProjectInfo = ({
       .from("profiles")
       .select("username, is_verified")
       .eq("id", user_id);
-    setUsername(profiles[0].username);
-    setIsVerified(profiles[0].is_verified);
+    setUsername(profiles[0]?.username);
+    setIsVerified(profiles[0]?.is_verified);
   };
 
   useEffect(() => {
@@ -201,14 +201,16 @@ const ProjectInfo = ({
         <Flex m="12px 0">
           {loading && <Spinner />}
           {!loading && !error && screenshots && (
-            <Image
-              src={screenshots[0]}
-              objectFit="cover"
-              bg={"grey.900"}
-              w="full"
-              h="350px"
-              alt="screenshot"
-            />
+            <Box>
+              <Image
+                src={screenshots[0]}
+                objectFit="cover"
+                bg={"grey.900"}
+                w="full"
+                h="350px"
+                alt="screenshot"
+              />
+            </Box>
           )}
         </Flex>
 
