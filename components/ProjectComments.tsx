@@ -1,4 +1,4 @@
-import { Box, Text, Button,Center } from "@chakra-ui/react";
+import { Box, Text, Button, Center } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Projects from "../pages/[profile]/projects";
 import { supabase } from "../utils/supabaseClient";
@@ -22,8 +22,8 @@ const ProjectComments = ({
       .select("*")
       .eq("project_id", postId);
     setComments(project_comments);
-    setIsLoading(false)
-    error && setisError(true)
+    setIsLoading(false);
+    error && setisError(true);
   };
 
   useEffect(() => {
@@ -31,20 +31,26 @@ const ProjectComments = ({
   }, []);
   return (
     <Box mt={10} px={8}>
-     {!isLoading && !isError &&  <ProjectCommentInput userId={userId} postId={postId} />}
+      {!isLoading && !isError && (
+        <ProjectCommentInput userId={userId} postId={postId} />
+      )}
 
       <Box mt={5}>
         {isLoading && <CommentProgress />}
 
-        {!isLoading && comments && comments.map((comment: any) => (
-          <ProjectSingleComment comment={comment} key={comment.id} />
-        ))}
+        {!isLoading &&
+          comments &&
+          comments.map((comment: any) => (
+            <ProjectSingleComment comment={comment} key={comment.id} />
+          ))}
 
         {!comments && !isLoading && (
           <Center textAlign="center">
             <Box>
-              <Text my="2" fontWeight="bold">An Error Occurred.</Text>
-          <Button>Retry</Button>
+              <Text my="2" fontWeight="bold">
+                An Error Occurred.
+              </Text>
+              <Button>Retry</Button>
             </Box>
           </Center>
         )}
