@@ -80,9 +80,10 @@ const Projects = () => {
               key={project.id}
               name={project.name}
               owner={project.user}
-              description={project.description}
+              tagline={project.tagline}
               github={project.github_url}
               techStack={project.tech_stack}
+              slug={project.slug}
               // onOpen={() => {
               //   cardCLick(project.name);
               // }}
