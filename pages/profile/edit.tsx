@@ -13,7 +13,7 @@ import {
 import Head from "next/head";
 import React, { useEffect } from "react";
 import Header from "../../components/Header";
-import ContainerLayout from "../../Layout/ContainerLayout";
+import ContainerLayout from "../../layouts/ContainerLayout";
 import { useState } from "react";
 import GradientButton from "../../components/GradientButton";
 import { supabase } from "../../utils/supabaseClient";
